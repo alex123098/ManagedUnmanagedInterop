@@ -26,7 +26,7 @@ bool CommandProcessor::ProcessNextCommand(MemoryMappedFile* mmf)
 	mmf->Read(m_mCommandOffset, &cmd, sizeof(char));
 	LogicCommand command = static_cast<LogicCommand>(cmd);
 	
-	cout << "Received command: " << LogicCommandsStr[cmd] << endl;
+	cout << "Received command: " << LogicCommandsStr[cmd] << "(" << command << ")" << endl;
 
 	bool result = cmd != END;
 	mmf->Write(m_nResultOffset, &result, sizeof(bool));

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int _tmain()
 {
 	cout << "Creaing settings provider...";
 	auto settings = new SimpleSettingsProvider();

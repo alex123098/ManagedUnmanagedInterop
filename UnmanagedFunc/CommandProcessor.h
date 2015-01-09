@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include <memory>
 
 class MemoryMappedFile;
 class ISettingsProvider;
@@ -8,12 +7,16 @@ class ISettingsProvider;
 class CommandProcessor
 {
 public:
-	HANDLE m_hReadEvent;
 	explicit CommandProcessor(ISettingsProvider* settingsProvider);
-	bool ProcessNextCommand(MemoryMappedFile* mmf);
 	~CommandProcessor();
+	
+	CommandProcessor(const CommandProcessor&) = delete;
+	CommandProcessor& operator=(const CommandProcessor&) = delete;
+
+	bool ProcessNextCommand(MemoryMappedFile* mmf);
 
 private:
+	HANDLE m_hReadEvent;
 	int m_nResultOffset;
 	int m_mCommandOffset;
 };
