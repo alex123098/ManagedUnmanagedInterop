@@ -28,7 +28,11 @@ namespace ManUnmanInterop
 						continue;
 					}
 					if (TryGetCommand(keyInfo, out command)) {
-						Console.WriteLine("Logic returns: {0}", logicDispatcher.RequestCommand<bool>(command));
+						try {
+							Console.WriteLine("Logic returns: {0}", logicDispatcher.RequestCommand<bool>(command));
+						} catch (CommandProcessingException ex) {
+							Console.WriteLine("Command processing exception {0} for command {1}", ex, ex.Command);
+						}
 					}
 				} while (keyInfo.Key != ConsoleKey.Escape);
 			}
